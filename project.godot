@@ -14,7 +14,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Godot Match 3"
+config/name="Juicy Match 3"
 run/main_scene="res://UI/Menu.tscn"
 config/icon="res://icon.png"
 
