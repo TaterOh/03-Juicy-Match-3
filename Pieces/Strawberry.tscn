@@ -59,3 +59,5 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 4, 149, 111, 131 )
+
+[node name="Tween" type="Tween" parent="."]

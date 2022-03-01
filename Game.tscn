@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Grid/grid.gd" type="Script" id=1]
 [ext_resource path="res://Grid/Game.gd" type="Script" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://UI/Level.gd" type="Script" id=4]
 [ext_resource path="res://UI/Goals.gd" type="Script" id=5]
 [ext_resource path="res://Music/TheGarden.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/BlockDrop1.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/BlockDrop3.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/BlockDrop2.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/Fruit0.wav" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/Fruit1.wav" type="AudioStream" id=11]
 
 [node name="Game" type="Node2D"]
 process_priority = 1
@@ -168,6 +173,23 @@ autoplay = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 287, 520 )
 current = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="BlockDrop0" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 7 )
+
+[node name="BlockDrop1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 9 )
+
+[node name="BlockDrop2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 8 )
+
+[node name="Fruit0" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 10 )
+
+[node name="Fruit1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 11 )
 
 [connection signal="set_dimensions" from="." to="Grid" method="_on_Game_set_dimensions"]
 [connection signal="timeout" from="DestroyTimer" to="Grid" method="_on_DestroyTimer_timeout"]

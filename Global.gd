@@ -29,6 +29,15 @@ var levels = [
 		"goal": [{ "piece":"Blackberry", "max":10, "count":0 }],
 		"level": "Level 3",
 		"instructions": "Match 10 blackberries"
+	},
+	{
+		"unlocked": true,
+		"high score": 0,
+		"stars unlocked": 0,
+		"moves":12,
+		"goal": [{"piece":"Apple", "max":3, "count":0}, {"piece":"Blackberry", "max":3, "count":0}, {"piece":"Blueberry", "max":3, "count":0}, {"piece":"Banana", "max":3, "count":0}, {"piece":"Strawberry", "max":3, "count":0}],
+		"level": "Level 3",
+		"instructions": "Match 3 of every fruit"
 	}
 ]
 

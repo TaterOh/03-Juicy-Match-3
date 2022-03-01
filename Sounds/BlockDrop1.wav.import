@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BlockDrop1.wav-c057f002ef2842e371e68783fcd5b03f.sample"
+
+[deps]
+
+source_file="res://Sounds/BlockDrop1.wav"
+dest_files=[ "res://.import/BlockDrop1.wav-c057f002ef2842e371e68783fcd5b03f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

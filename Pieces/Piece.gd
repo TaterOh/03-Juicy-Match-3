@@ -12,9 +12,11 @@ var selected = false
 var target_position = Vector2(0,0)
 var grid = Vector2.ZERO
 var column_bomb_color = Color(0.5, 0, 0, 1)
-var row_bomb_color = Color(0.25, 0.25, 0, 1)
+var row_bomb_color = Color(0, 0, 0.5, 1)
 var adjacent_bomb_color = Color(0.15, 0.15, 0.15, 1)
 var color_bomb_color = Color(0.75, 0.75, 0.75, 1)
+var block_drop_sounds = []
+var die_sounds = []
 
 var default_z = z_index
 const max_z = 4095
@@ -23,6 +25,11 @@ var dying = false
 
 func _ready():
 	target_position = position
+	block_drop_sounds.append(get_node("/root/Game/Sounds/BlockDrop0"))
+	block_drop_sounds.append(get_node("/root/Game/Sounds/BlockDrop1"))
+	block_drop_sounds.append(get_node("/root/Game/Sounds/BlockDrop2"))
+	die_sounds.append(get_node("/root/Game/sounds/Fruit0"))
+	die_sounds.append(get_node("/root/Game/sounds/Fruit1"))
 
 func _physics_process(_delta):
 	if dying:
@@ -44,6 +51,8 @@ func _physics_process(_delta):
 func move(change):
 	target_position = change
 	position = target_position
+	var sound = block_drop_sounds[rand_range(0, len(block_drop_sounds) - 1)]
+	sound.playing = true
 
 func dim():
 	pass
@@ -66,6 +75,7 @@ func make_color_bomb():
 	modulate = color_bomb_color
 
 func die():
+	var sound = die_sounds[rand_range(0, len(die_sounds) - 1)]
 	dying = true
 	Global.update_goals(piece)
 
