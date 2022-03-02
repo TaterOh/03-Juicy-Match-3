@@ -9,13 +9,14 @@ Built using Godot 3.4.2
 # Features
  * Screen shake
  * Custom sprites (made by Isabelle Sylvester)
- * Match animation
  * Generation & swapping animation
  * Backgrounds that swap with a dissolve shader (doesn't work the 1st time)
  * Swapping & falling sounds for the fruits (randomized from a list)
- * Matching sounds for the fruits (randomized from a list)
+ * Match sound effects (randomized from a list)
+ * Match animation
  * Music
  * Highlight & particles when fruit is selected
+ * 4 levels with different goals
 
 # References
  * [Godot Simple 2D dissolve](https://godotshaders.com/shader/simple-2d-dissolve/)
