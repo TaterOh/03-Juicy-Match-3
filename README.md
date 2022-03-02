@@ -1,5 +1,7 @@
 # 03-Juicy-Match-3
-Project 03 from MSCH-C220\
+Project 03 from MSCH-C220 at Indiana University
+
+Swap fruit to make matches!
 
 # Implementation
 Built using Godot 3.4.2
