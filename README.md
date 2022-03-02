@@ -6,6 +6,17 @@ Swap fruit to make matches!
 # Implementation
 Built using Godot 3.4.2
 
+# Features
+ * Screen shake
+ * Custom sprites (made by Isabelle Sylvester)
+ * Match animation
+ * Generation & swapping animation
+ * Backgrounds that swap with a dissolve shader (doesn't work the 1st time)
+ * Swapping & falling sounds (randomized from a list)
+ * Matching sounds (randomized from a list)
+ * Music
+ * Highlight & particles when fruit is selected
+
 # References
  * [Godot Simple 2D dissolve](https://godotshaders.com/shader/simple-2d-dissolve/)
  * [Godot 2D fire shader](https://godotshaders.com/shader/2d-fire/)
