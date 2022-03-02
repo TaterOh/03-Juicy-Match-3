@@ -7,6 +7,7 @@ Swap fruit to make matches!
 Built using Godot 3.4.2
 
 # References
+ * [Godot Simple 2D dissolve](https://godotshaders.com/shader/simple-2d-dissolve/)
  * [Godot 2D fire shader](https://godotshaders.com/shader/2d-fire/)
  * Fruit sprites provided by Isabelle Sylvester
  * The match-3 game is derived from code provided by [MisterTaftCreates](https://github.com/mistertaftcreates/Godot_match_3), with an accompanying [YouTube series](https://www.youtube.com/playlist?list=PL4vbr3u7UKWqwQlvwvgNcgDL1p_3hcNn2)
