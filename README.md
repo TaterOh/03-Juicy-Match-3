@@ -17,10 +17,12 @@ Built using Godot 3.4.2
  * Music
  * Highlight & particles when fruit is selected
  * 4 levels with different goals
+ * Clouds shader for end screens
 
 # References
  * [Godot Simple 2D dissolve](https://godotshaders.com/shader/simple-2d-dissolve/)
  * [Godot 2D fire shader](https://godotshaders.com/shader/2d-fire/)
+ * [Godot Clouds in motion](https://godotshaders.com/shader/clouds-in-motion/)
  * Fruit sprites provided by Isabelle Sylvester
  * The match-3 game is derived from code provided by [MisterTaftCreates](https://github.com/mistertaftcreates/Godot_match_3), with an accompanying [YouTube series](https://www.youtube.com/playlist?list=PL4vbr3u7UKWqwQlvwvgNcgDL1p_3hcNn2)
  * Screen Shake script provided by [KidsCanCode](https://kidscancode.org/godot_recipes/2d/screen_shake/)
