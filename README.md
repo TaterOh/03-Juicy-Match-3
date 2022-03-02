@@ -1,7 +1,7 @@
 # 03-Juicy-Match-3
-Project 03 from MSCH-C220 at Indiana University
+Project 03 from MSCH-C220 at Indiana University made 2 March 2022
 
-Swap fruit to make matches!
+Swap fruit to make matches! Make matches to meet goals!
 
 # Implementation
 Built using Godot 3.4.2
