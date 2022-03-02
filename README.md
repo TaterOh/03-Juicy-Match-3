@@ -12,8 +12,8 @@ Built using Godot 3.4.2
  * Match animation
  * Generation & swapping animation
  * Backgrounds that swap with a dissolve shader (doesn't work the 1st time)
- * Swapping & falling sounds (randomized from a list)
- * Matching sounds (randomized from a list)
+ * Swapping & falling sounds for the fruits (randomized from a list)
+ * Matching sounds for the fruits (randomized from a list)
  * Music
  * Highlight & particles when fruit is selected
 
