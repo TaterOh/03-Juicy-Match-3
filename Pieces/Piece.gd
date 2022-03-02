@@ -11,29 +11,25 @@ var is_color_bomb = false
 var selected = false
 var target_position = Vector2(0,0)
 var grid = Vector2.ZERO
-var column_bomb_color = Color(0.5, 0, 0, 1)
-var row_bomb_color = Color(0, 0, 0.5, 1)
-var adjacent_bomb_color = Color(0.15, 0.15, 0.15, 1)
-var color_bomb_color = Color(0.75, 0.75, 0.75, 1)
+var column_bomb_color = Color(1, 0.2, 0.2, 1)
+var row_bomb_color = Color(0.2, 0.2, 1, 1)
+var adjacent_bomb_color = Color(0, 0, 1, 1)
+var color_bomb_color = Color(0.5, 0.5, 0.5, 1)
 var block_drop_sounds = []
 var die_sounds = []
 
 var default_z = z_index
 const max_z = 4095
 
-var dying = false
-
 func _ready():
 	target_position = position
 	block_drop_sounds.append(get_node("/root/Game/Sounds/BlockDrop0"))
 	block_drop_sounds.append(get_node("/root/Game/Sounds/BlockDrop1"))
 	block_drop_sounds.append(get_node("/root/Game/Sounds/BlockDrop2"))
-	die_sounds.append(get_node("/root/Game/sounds/Fruit0"))
-	die_sounds.append(get_node("/root/Game/sounds/Fruit1"))
+	die_sounds.append(get_node("/root/Game/Sounds/Fruit0"))
+	die_sounds.append(get_node("/root/Game/Sounds/Fruit1"))
 
 func _physics_process(_delta):
-	if dying:
-		queue_free()
 	if selected:
 		if z_index == default_z:
 			z_index = max_z
@@ -50,9 +46,11 @@ func _physics_process(_delta):
 
 func move(change):
 	target_position = change
-	position = target_position
-	var sound = block_drop_sounds[rand_range(0, len(block_drop_sounds) - 1)]
-	sound.playing = true
+	$Tween.interpolate_property(self, "position", position, target_position, 0.5, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
+	$Tween.start()
+	var sound = block_drop_sounds[rand_range(0, len(block_drop_sounds))]
+	if sound != null:
+		sound.play()
 
 func dim():
 	pass
@@ -60,23 +58,40 @@ func dim():
 func make_column_bomb():
 	is_column_bomb = true
 	modulate = column_bomb_color
+	var Fire = load("res://Shaders/Fire.tscn")
+	add_child(Fire.instance())
 
 func make_row_bomb():
 	is_row_bomb = true
 	modulate = row_bomb_color
+	var Fire = load("res://Shaders/Fire.tscn")
+	add_child(Fire.instance())
 
 func make_adjacent_bomb():
 	is_adjacent_bomb = true
 	modulate = adjacent_bomb_color
+	var Fire = load("res://Shaders/Fire.tscn")
+	add_child(Fire.instance())
 
 func make_color_bomb():
 	is_color_bomb = true
 	piece = "Color"
 	modulate = color_bomb_color
+	var Fire = load("res://Shaders/Fire.tscn")
+	add_child(Fire.instance())
 
 func die():
-	var sound = die_sounds[rand_range(0, len(die_sounds) - 1)]
-	dying = true
+	var sound = die_sounds[rand_range(0, len(die_sounds))]
+	if sound != null:
+		sound.play()
+	$Tween.interpolate_property(self, "position:y", position.y, 1000, randf()+0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.start()
+	$Tween.interpolate_property(self, "scale", scale, Vector2(0.75, 1.25), randf()+0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.start()
+	$Tween.interpolate_property(self, "modulate:a", modulate.a, 0, randf()+0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.start()
+	$Timer.wait_time = 2
+	$Timer.start()
 	Global.update_goals(piece)
 
 
@@ -105,3 +120,7 @@ func constrain(xy):
 			var max_x = Grid.grid_to_pixel(clamp(grid.x+1,grid.x,Grid.width-1), grid.y)
 			temp.x = clamp(temp.x,min_x.x,max_x.x)
 		return temp
+
+
+func _on_Timer_timeout():
+	queue_free()

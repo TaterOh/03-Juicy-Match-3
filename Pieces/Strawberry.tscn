@@ -61,3 +61,8 @@ region_enabled = true
 region_rect = Rect2( 4, 149, 111, 131 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

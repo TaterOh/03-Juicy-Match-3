@@ -1,5 +1,6 @@
 extends Node
 
+var camera = null
 var change_level = false
 var current_level = 0
 var levels = [
@@ -16,16 +17,16 @@ var levels = [
 		"unlocked": true,
 		"high score": 0,
 		"stars unlocked": 0,
-		"moves":20,
-		"goal": [{ "piece":"Strawberry", "max":5, "count":0 },{ "piece":"Blueberry", "max":5, "count":0 }],
+		"moves":18,
+		"goal": [{ "piece":"Banana", "max":5, "count":0 },{ "piece":"Blueberry", "max":5, "count":0 }],
 		"level": "Level 2",
-		"instructions": "Match 5 strawberries and 5 blueberries"
+		"instructions": "Match 5 bananas and 5 blueberries"
 	},
 	{
 		"unlocked": true,
 		"high score": 0,
 		"stars unlocked": 0,
-		"moves":20,
+		"moves":16,
 		"goal": [{ "piece":"Blackberry", "max":10, "count":0 }],
 		"level": "Level 3",
 		"instructions": "Match 10 blackberries"
@@ -36,7 +37,7 @@ var levels = [
 		"stars unlocked": 0,
 		"moves":12,
 		"goal": [{"piece":"Apple", "max":3, "count":0}, {"piece":"Blackberry", "max":3, "count":0}, {"piece":"Blueberry", "max":3, "count":0}, {"piece":"Banana", "max":3, "count":0}, {"piece":"Strawberry", "max":3, "count":0}],
-		"level": "Level 3",
+		"level": "Level 4",
 		"instructions": "Match 3 of every fruit"
 	}
 ]
@@ -82,6 +83,10 @@ func _unhandled_input(event):
 func change_score(s):
 	score += s
 	emit_signal("changed")
+	if camera == null:
+		camera = get_node_or_null("/root/Game/Camera")
+	if camera != null:
+		camera.add_trauma(s/35.0 + 0.1)
 
 func change_moves(m):
 	moves += m

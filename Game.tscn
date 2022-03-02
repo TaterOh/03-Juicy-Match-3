@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Grid/grid.gd" type="Script" id=1]
 [ext_resource path="res://Grid/Game.gd" type="Script" id=2]
@@ -11,6 +11,33 @@
 [ext_resource path="res://Sounds/BlockDrop2.wav" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/Fruit0.wav" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/Fruit1.wav" type="AudioStream" id=11]
+[ext_resource path="res://Camera2D.gd" type="Script" id=12]
+[ext_resource path="res://UI/Background_Container.gd" type="Script" id=13]
+[ext_resource path="res://Assets/backgroundCastles.png" type="Texture" id=14]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D dissolve_texture : hint_albedo;
+uniform float dissolve_value : hint_range(0,1);
+
+void fragment(){
+    vec4 main_texture = texture(TEXTURE, UV);
+    vec4 noise_texture = texture(dissolve_texture, UV);
+    main_texture.a *= floor(dissolve_value + min(1, noise_texture.x));
+    COLOR = main_texture;
+}"
+
+[sub_resource type="OpenSimplexNoise" id=3]
+
+[sub_resource type="NoiseTexture" id=4]
+seamless = true
+noise = SubResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/dissolve_value = 1.0
+shader_param/dissolve_texture = SubResource( 4 )
 
 [node name="Game" type="Node2D"]
 process_priority = 1
@@ -18,6 +45,14 @@ script = ExtResource( 2 )
 width = 5
 height = 8
 level = 1
+
+[node name="Background_Container" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="Background" type="Sprite" parent="Background_Container"]
+material = SubResource( 2 )
+texture = ExtResource( 14 )
+centered = false
 
 [node name="Grid" type="Node2D" parent="."]
 script = ExtResource( 1 )
@@ -165,14 +200,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -10.0
+volume_db = -15.0
 autoplay = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 287, 520 )
 current = true
+script = ExtResource( 12 )
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -187,9 +223,12 @@ stream = ExtResource( 8 )
 
 [node name="Fruit0" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 10 )
+pitch_scale = 1.2
 
 [node name="Fruit1" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 11 )
+volume_db = 5.0
+pitch_scale = 1.5
 
 [connection signal="set_dimensions" from="." to="Grid" method="_on_Game_set_dimensions"]
 [connection signal="timeout" from="DestroyTimer" to="Grid" method="_on_DestroyTimer_timeout"]

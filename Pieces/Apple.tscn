@@ -61,3 +61,6 @@ region_enabled = true
 region_rect = Rect2( 146, 6, 132, 133 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
